@@ -70,15 +70,10 @@
   <li>Your Play Games player ID and display name</li>
   <li>Leaderboard scores and achievements</li>
 </ul>
-<p>This data is managed by Google Play Games Services in accordance with <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Core gameplay does not require Play Games sign-in. Google Play Games may sign you in automatically according to your Google account settings; you can manage that behavior in Google Play Games settings.</p>
+<p>This data is managed by Google Play Games Services in accordance with <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Core gameplay does not require Play Games sign-in. In the updated release, Play Games is initialized only when a user who selected 18 or older chooses a Play Games feature. The app blocks its Play Games calls for under-18 and unknown-age users. You can manage your Play Games account and records through Google Play Games settings.</p>
 
 <h3>Analytics and Crash Reporting</h3>
-<p>The app uses Firebase services to improve reliability and understand usage:</p>
-<ul>
-  <li><strong>Crash reports</strong> via Firebase Crashlytics &mdash; crash stack traces, device model, operating system and app versions, app state, and installation identifiers used to associate crash reports</li>
-  <li><strong>Usage analytics</strong> via Firebase Analytics &mdash; app interactions, session information, device and app information, and an app-instance identifier. Reports may be aggregated, but the underlying collection is not necessarily anonymous</li>
-</ul>
-<p>This data is processed by Google Firebase in accordance with <a href="https://firebase.google.com/support/privacy">Google's privacy policy</a>. Advertising privacy choices do not by themselves disable Firebase Analytics or Crashlytics. The app currently has no separate in-app switch for these services.</p>
+<p>The updated release does not include Firebase Analytics or Firebase Crashlytics. It does not send app usage analytics or crash reports through those services. Older releases included these services; data previously processed by Google remains subject to <a href="https://firebase.google.com/support/privacy">Firebase's privacy and retention practices</a>.</p>
 
 <h2>Information We Do Not Collect</h2>
 <ul>
@@ -95,7 +90,6 @@
   <li><strong>Google AdMob</strong> &mdash; for age-appropriate advertising (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
   <li><strong>Google Play Billing</strong> &mdash; for processing in-app purchases (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
   <li><strong>Google Play Games Services</strong> &mdash; for leaderboards and achievements (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
-  <li><strong>Firebase Crashlytics &amp; Analytics</strong> &mdash; for crash reporting and usage analytics (<a href="https://firebase.google.com/support/privacy">Firebase Privacy</a>)</li>
 </ul>
 
 <h2>Data Storage, Retention, and Deletion</h2>
@@ -104,7 +98,7 @@
 <p>We do not operate our own game-data servers. Google services may process data outside your country under their published privacy and security practices.</p>
 
 <h2>Children's Privacy</h2>
-<p>TapSync supports all ages. For advertising, users under 18 and users whose age is unknown are placed on the restricted path, which allows only a home-screen banner with child-directed treatment and G-rated content after applicable privacy checks. An age group is stored locally; it is not sent as an analytics event. This advertising restriction does not switch off Firebase or Google Play Games. Their data practices are described above. Parents or guardians can contact us with questions about a child's use of the app or associated data.</p>
+<p>TapSync supports all ages. For advertising, users under 18 and users whose age is unknown are placed on the restricted path, which allows only a home-screen banner with child-directed treatment and G-rated content after applicable privacy checks. An age group is stored locally; it is not sent as an analytics event. The updated release does not include Firebase Analytics or Crashlytics and blocks app-initiated Play Games features for users under 18 or whose age is unknown. Parents or guardians can contact us with questions about a child's use of the app or associated data.</p>
 
 <h2>Your Choices</h2>
 <ul>
