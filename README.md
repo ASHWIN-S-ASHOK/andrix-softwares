@@ -10,7 +10,7 @@ When an app changes SDKs or data practices, review its policy against the actual
 
 ## Authorized ad sellers
 
-[app-ads.txt](https://ashwin-s-ashok.github.io/access-privacy-policies/app-ads.txt) declares the Google AdMob publisher used by TapSync.
+[app-ads.txt](https://ashwin-s-ashok.github.io/andrix-softwares/app-ads.txt) declares the Google AdMob publisher used by TapSync.
 
 AdMob discovers this file at the root of the developer website hostname, ignoring the path in the Play Store website URL. Publishing it in this project repository alone does not complete verification: `https://ashwin-s-ashok.github.io/app-ads.txt` must also serve this content (or an HTTP redirect to it). On GitHub Pages, publish the same file in the user-site repository `ASHWIN-S-ASHOK.github.io`. An HTML or JavaScript redirect is not sufficient.
 
