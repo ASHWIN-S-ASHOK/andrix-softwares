@@ -1,43 +1,8 @@
-From 0dd710966051d9aa84fcad57ff6a97f56307fd44 Mon Sep 17 00:00:00 2001
-From: Ashwin S Ashok <ashwin.s.ashok@gmail.com>
-Date: Sat, 24 Oct 2026 07:24:37 +0000
-Subject: [PATCH] Centralize app privacy policies on the organization website
-
----
- .nojekyll                    |   0
- README.md                    |  51 +++-
- dotdodge.html                | 110 ++++++++
- english-grammar.html         |  20 ++
- index.html                   |  13 +-
- jquery.html                  |  19 ++
- movies-now.html              | 530 +++++++++++++++++++++++++++++++++++
- netpulse.html                | 121 ++++++++
- policies.json                |  44 +++
- privacy.html                 |   7 +
- tapsync.html                 | 120 ++++++++
- tools/check-live-policies.py |  13 +
- tools/validate-policies.py   |  31 ++
- 13 files changed, 1073 insertions(+), 6 deletions(-)
- create mode 100644 .nojekyll
- create mode 100644 dotdodge.html
- create mode 100644 english-grammar.html
- create mode 100644 jquery.html
- create mode 100644 movies-now.html
- create mode 100644 netpulse.html
- create mode 100644 policies.json
- create mode 100644 privacy.html
- create mode 100644 tapsync.html
- create mode 100644 tools/check-live-policies.py
- create mode 100644 tools/validate-policies.py
-
-diff --git a/.nojekyll b/.nojekyll
-new file mode 100644
-index 0000000..e69de29
 diff --git a/README.md b/README.md
-index 533404d..5e967a3 100644
+index 533404d..4624481 100644
 --- a/README.md
 +++ b/README.md
-@@ -1 +1,50 @@
+@@ -1 +1,51 @@
 -# Andrix-Software.github.io
 \ No newline at end of file
 +# Andrix Software website and privacy policies
@@ -61,12 +26,12 @@ index 533404d..5e967a3 100644
 +The latest policies there take precedence over older app-repository snapshots.
 +jQuery and English Grammar were imported from their app repositories. Movies Now
 +was imported from the existing `andrix-softwares/projects` policy site.
-+The imported policy wording and effective dates are unchanged. `policies.json`
++The data-practice disclosures and their effective dates are unchanged. Contact
++information was standardized to andrix.android@gmail.com on 24 October 2026. `policies.json`
 +records each source and its import hash for migration verification.
 +
 +Make future policy changes here. Update a policy's date when its disclosures
-+change. Migration alone is not an audit or a change in data practices. Individual
-+policies retain their existing privacy contacts. The old personal policy site keeps its existing pages available, so existing
++change. Migration alone is not an audit or a change in data practices. All policies use **andrix.android@gmail.com** for privacy questions. The old personal policy site keeps its existing pages available, so existing
 +store links still provide policy text during migration. Only update old links
 +after confirming the organization pages are live.
 +
@@ -85,7 +50,8 @@ index 533404d..5e967a3 100644
 +
 +Run `python3 tools/validate-policies.py` to validate page structure, index links,
 +and the seller file. Add `--verify-imports` to check the original migration hashes
-+before the first publication; later policy edits naturally change those hashes. Public Pages deployment must also be checked independently; a
++before the first publication; later policy edits naturally change those hashes. `published_sha256` verifies
++the current distributed version, including the standardized contact address. Public Pages deployment must also be checked independently; a
 +successful Git push does not prove that the website has deployed.
 +
 +After deployment, run `python3 tools/check-live-policies.py` to confirm all six
@@ -208,7 +174,7 @@ index 0000000..ee68e6e
 +</html>
 diff --git a/english-grammar.html b/english-grammar.html
 new file mode 100644
-index 0000000..9d250bd
+index 0000000..1a22c84
 --- /dev/null
 +++ b/english-grammar.html
 @@ -0,0 +1,20 @@
@@ -229,8 +195,8 @@ index 0000000..9d250bd
 +<h2>Older versions</h2><p>The legacy version 1 included AppBrain. AppBrain is removed from this upgraded app. Disclosures for any older version still distributed must cover that version separately.</p>
 +<h2>Purchases</h2>
 +<p>This version does not include in-app purchases or subscriptions and does not collect payment details.</p>
-+<h2>Contact and changes</h2>
-+<p>For questions or deletion requests, contact the developer through the support email displayed on this app's Google Play listing. Locally stored progress can be deleted directly by clearing app storage. This policy will be updated when the app's data practices change.</p>
++<h2>Contact and changes</h2><p>Privacy contact updated: 24 October 2026.</p>
++<p>For questions or deletion requests, email <a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a>. Locally stored progress can be deleted directly by clearing app storage. This policy will be updated when the app's data practices change.</p>
 +</main></html>
 diff --git a/index.html b/index.html
 index 5569cc8..67d7a10 100644
@@ -267,7 +233,7 @@ index 5569cc8..67d7a10 100644
  </main>
 diff --git a/jquery.html b/jquery.html
 new file mode 100644
-index 0000000..3744bdf
+index 0000000..b73d5d5
 --- /dev/null
 +++ b/jquery.html
 @@ -0,0 +1,19 @@
@@ -287,8 +253,8 @@ index 0000000..3744bdf
 +<p>Where required, Google's consent form is requested before advertisements load. Use the app's <strong>Ad privacy</strong> control to read a summary and reopen available Google privacy choices. Available options depend on region and Google's consent requirements. Your Android device settings also provide advertising identifier and privacy controls. Learning content remains available offline and is not conditional on a purchase.</p>
 +<h2>Purchases</h2>
 +<p>This version does not include in-app purchases or subscriptions and does not collect payment details.</p>
-+<h2>Contact and changes</h2>
-+<p>For questions or deletion requests, contact the developer through the support email displayed on this app's Google Play listing. Locally stored progress can be deleted directly by clearing app storage. This policy will be updated when the app's data practices change.</p>
++<h2>Contact and changes</h2><p>Privacy contact updated: 24 October 2026.</p>
++<p>For questions or deletion requests, email <a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a>. Locally stored progress can be deleted directly by clearing app storage. This policy will be updated when the app's data practices change.</p>
 +</main></html>
 diff --git a/movies-now.html b/movies-now.html
 new file mode 100644
@@ -828,10 +794,10 @@ index 0000000..0ea8d0b
 +</html>
 diff --git a/netpulse.html b/netpulse.html
 new file mode 100644
-index 0000000..34abff6
+index 0000000..30a66c8
 --- /dev/null
 +++ b/netpulse.html
-@@ -0,0 +1,121 @@
+@@ -0,0 +1,122 @@
 +<!DOCTYPE html>
 +<html lang="en">
 +<head>
@@ -949,58 +915,65 @@ index 0000000..34abff6
 +
 +<h2>Contact</h2>
 +<p>If you have questions about this privacy policy, please contact us at:</p>
-+<p><a href="mailto:ashwin.s.ashok@gmail.com">ashwin.s.ashok@gmail.com</a></p>
++<p><a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a></p>
 +
++<p>Privacy contact updated: 24 October 2026.</p>
 +</body>
 +</html>
 diff --git a/policies.json b/policies.json
 new file mode 100644
-index 0000000..8c0c925
+index 0000000..a02abae
 --- /dev/null
 +++ b/policies.json
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,50 @@
 +[
 +  {
 +    "app": "NetPulse",
 +    "path": "netpulse.html",
 +    "url": "https://andrix-software.github.io/netpulse.html",
 +    "source": "https://github.com/ASHWIN-S-ASHOK/andrix-softwares/blob/adb5266417b59c7e371a910008fa19b7f89245b0/netpulse.html",
-+    "imported_sha256": "c2db6e3f35738dd21daea858fd4aa69490f4a3f951a1ef11460a2383b500fcde"
++    "imported_sha256": "c2db6e3f35738dd21daea858fd4aa69490f4a3f951a1ef11460a2383b500fcde",
++    "published_sha256": "cb26748ef184d1380fabec983cc5afcf5db195767dda678fc7c96da87e6ce7a4"
 +  },
 +  {
 +    "app": "TapSync",
 +    "path": "tapsync.html",
 +    "url": "https://andrix-software.github.io/tapsync.html",
 +    "source": "https://github.com/ASHWIN-S-ASHOK/andrix-softwares/blob/adb5266417b59c7e371a910008fa19b7f89245b0/tapsync.html",
-+    "imported_sha256": "9c686922f2ac75777c26d7dd1d9471c4e96e244a345e0869b2fc9b4fa38a12fc"
++    "imported_sha256": "9c686922f2ac75777c26d7dd1d9471c4e96e244a345e0869b2fc9b4fa38a12fc",
++    "published_sha256": "9c686922f2ac75777c26d7dd1d9471c4e96e244a345e0869b2fc9b4fa38a12fc"
 +  },
 +  {
 +    "app": "Dot Dodge",
 +    "path": "dotdodge.html",
 +    "url": "https://andrix-software.github.io/dotdodge.html",
 +    "source": "https://github.com/ASHWIN-S-ASHOK/andrix-softwares/blob/adb5266417b59c7e371a910008fa19b7f89245b0/dotdodge.html",
-+    "imported_sha256": "481436125160e4ec1433b8b7071f5c1a489d08dd1c5cad450ef8cfa75810e5f7"
++    "imported_sha256": "481436125160e4ec1433b8b7071f5c1a489d08dd1c5cad450ef8cfa75810e5f7",
++    "published_sha256": "481436125160e4ec1433b8b7071f5c1a489d08dd1c5cad450ef8cfa75810e5f7"
 +  },
 +  {
 +    "app": "jQuery Learn",
 +    "path": "jquery.html",
 +    "url": "https://andrix-software.github.io/jquery.html",
 +    "source": "https://github.com/ASHWIN-S-ASHOK/Jquery/blob/170f97f5743f6652aa05b746bdedb12fec894651/store-listing/privacy-policy.html",
-+    "imported_sha256": "7e7ef3e9c2ab244638709661563cc198e33f5217ad014f1f3f287dd930e935b1"
++    "imported_sha256": "7e7ef3e9c2ab244638709661563cc198e33f5217ad014f1f3f287dd930e935b1",
++    "published_sha256": "1ddfe1be816db6a873932e839db5ca27bff65618cdd50d3235b0deac1fcc26f9"
 +  },
 +  {
 +    "app": "English Grammar Learn",
 +    "path": "english-grammar.html",
 +    "url": "https://andrix-software.github.io/english-grammar.html",
 +    "source": "https://github.com/ASHWIN-S-ASHOK/English-Grammar/blob/52da1ddad90ab7208e51e5e5703b45d583fe7151/docs/privacy-policy.html",
-+    "imported_sha256": "0cd70461d002fbc36d7563e46298e6eb07218d91a5f95165a5100c88309e969a"
++    "imported_sha256": "0cd70461d002fbc36d7563e46298e6eb07218d91a5f95165a5100c88309e969a",
++    "published_sha256": "6c2d9b24d8add6bf613e76049f2c27a70062f7856a41406ce9d22edd9c0b1200"
 +  },
 +  {
 +    "app": "Movies Now",
 +    "path": "movies-now.html",
 +    "url": "https://andrix-software.github.io/movies-now.html",
 +    "source": "https://github.com/andrix-softwares/projects/blob/cf47443b72318636411458e15073ae908fdb54f2/privacy-policy.html",
-+    "imported_sha256": "deb0def5ce59a58f1d7327dd97c35f3366b0b9adec55c24a6ffae295ce16ae87"
++    "imported_sha256": "deb0def5ce59a58f1d7327dd97c35f3366b0b9adec55c24a6ffae295ce16ae87",
++    "published_sha256": "deb0def5ce59a58f1d7327dd97c35f3366b0b9adec55c24a6ffae295ce16ae87"
 +  }
 +]
 diff --git a/privacy.html b/privacy.html
@@ -1163,10 +1136,10 @@ index 0000000..07b46df
 +print('All six public pages match the migrated policies.')
 diff --git a/tools/validate-policies.py b/tools/validate-policies.py
 new file mode 100644
-index 0000000..5a1a59b
+index 0000000..bffa3b7
 --- /dev/null
 +++ b/tools/validate-policies.py
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,35 @@
 +#!/usr/bin/env python3
 +from pathlib import Path
 +from html.parser import HTMLParser
@@ -1195,9 +1168,10 @@ index 0000000..5a1a59b
 +    assert p['url']=='https://andrix-software.github.io/'+p['path']
 +    if '--verify-imports' in sys.argv:
 +        assert hashlib.sha256((ROOT/p['path']).read_bytes()).hexdigest()==p['imported_sha256'],p['path']
++    assert 'mailto:andrix.android@gmail.com' in pages[p['path']].links,p['path']
++    assert all(href == 'mailto:andrix.android@gmail.com' for href in pages[p['path']].links if href.startswith('mailto:')),p['path']
++    if 'published_sha256' in p:
++        assert hashlib.sha256((ROOT/p['path']).read_bytes()).hexdigest()==p['published_sha256'],p['path']
 +    print('OK',p['app'],p['url'])
 +assert (ROOT/'app-ads.txt').read_text().strip()=='google.com, pub-7116396142264702, DIRECT, f08c47fec0942fa0'
 +print('Six policy imports, homepage/catalog links and app-ads.txt validated.')
--- 
-2.52.0
-
