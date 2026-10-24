@@ -15,3 +15,16 @@ When an app changes SDKs or data practices, review its policy against the actual
 AdMob discovers this file at the root of the developer website hostname, ignoring the path in the Play Store website URL. Publishing it in this project repository alone does not complete verification: `https://ashwin-s-ashok.github.io/app-ads.txt` must also serve this content (or an HTTP redirect to it). On GitHub Pages, publish the same file in the user-site repository `ASHWIN-S-ASHOK.github.io`. An HTML or JavaScript redirect is not sufficient.
 
 Keep both copies synchronized. Set the app's developer website in the Play Store listing to the public website, then request another check in AdMob after the root URL is live. See [Google's setup instructions](https://support.google.com/admob/answer/9363762).
+
+## Manual website deployment
+
+The checked-in `Publish website (manual)` workflow runs only through
+**Actions → Publish website (manual) → Run workflow**. It has no push, pull-request
+or scheduled trigger.
+
+**Required one-time repository setting:** open **Settings → Pages → Build and
+deployment → Source** and select **GitHub Actions**. A site still configured as
+**Deploy from a branch** can run GitHub-generated automatic Pages deployments,
+even when all checked-in workflow files are manual-only. Changing workflow YAML
+alone does not switch that setting. Keep the `github-pages` environment available
+for the deployment job; any environment approvals still apply.
