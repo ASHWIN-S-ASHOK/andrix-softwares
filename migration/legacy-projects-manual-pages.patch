@@ -1,0 +1,71 @@
+From f9bc89ecb120eefd034d7ea703b18ad9ea193e53 Mon Sep 17 00:00:00 2001
+From: Ashwin S Ashok <andrix.android@gmail.com>
+Date: Sat, 24 Oct 2026 10:13:42 +0000
+Subject: [PATCH] Make website deployment manual-only [skip ci]
+
+---
+ .github/workflows/publish-pages.yml | 30 +++++++++++++++++++++++++++++
+ README.md                           | 14 ++++++++++++++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 .github/workflows/publish-pages.yml
+ create mode 100644 README.md
+
+diff --git a/.github/workflows/publish-pages.yml b/.github/workflows/publish-pages.yml
+new file mode 100644
+index 0000000..c3d3595
+--- /dev/null
++++ b/.github/workflows/publish-pages.yml
+@@ -0,0 +1,30 @@
++name: Publish website (manual)
++
++on:
++  workflow_dispatch:
++
++permissions:
++  contents: read
++  pages: write
++  id-token: write
++
++concurrency:
++  group: pages
++  cancel-in-progress: false
++
++jobs:
++  deploy:
++    runs-on: ubuntu-24.04
++    environment:
++      name: github-pages
++      url: ${{ steps.deployment.outputs.page_url }}
++    steps:
++      - uses: actions/checkout@v4
++      - uses: actions/configure-pages@v5
++      - name: Upload static website
++        uses: actions/upload-pages-artifact@v3
++        with:
++          path: .
++      - name: Deploy to GitHub Pages
++        id: deployment
++        uses: actions/deploy-pages@v4
+diff --git a/README.md b/README.md
+new file mode 100644
+index 0000000..7e01038
+--- /dev/null
++++ b/README.md
+@@ -0,0 +1,14 @@
++# App privacy policies
++
++## Manual website deployment
++
++The checked-in `Publish website (manual)` workflow runs only through
++**Actions → Publish website (manual) → Run workflow**. It has no push, pull-request
++or scheduled trigger.
++
++**Required one-time repository setting:** open **Settings → Pages → Build and
++deployment → Source** and select **GitHub Actions**. A site still configured as
++**Deploy from a branch** can run GitHub-generated automatic Pages deployments,
++even when all checked-in workflow files are manual-only. Changing workflow YAML
++alone does not switch that setting. Keep the `github-pages` environment available
++for the deployment job; any environment approvals still apply.
+-- 
+2.52.0
+

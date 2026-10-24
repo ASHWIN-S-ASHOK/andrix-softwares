@@ -49,3 +49,18 @@ the cloud network policy, so public deployment cannot be checked from this task.
 - https://andrix-software.github.io/jquery.html
 - https://andrix-software.github.io/english-grammar.html
 - https://andrix-software.github.io/movies-now.html
+
+## Manual Actions and legacy policy-site deployment
+
+All checked-in workflows in the audited connected repositories are now
+manual-only. Use Actions → select workflow → Run workflow, then choose a branch.
+
+The current organization site and this personal site have a manual website
+workflow. For each Pages site, set Settings → Pages → Build and deployment →
+Source to **GitHub Actions**. Leaving **Deploy from a branch** enabled can still
+produce automatic GitHub-generated Pages jobs outside checked-in workflow YAML.
+
+`legacy-projects-manual-pages.patch` prepares the same manual website launcher for
+`andrix-softwares/projects`. Its push was denied to the connected account, so that
+legacy repository has not been changed. An authorized owner can apply the patch
+and switch its Pages source to GitHub Actions. Current policy HTML is unchanged.
