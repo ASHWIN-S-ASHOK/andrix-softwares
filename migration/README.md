@@ -1,5 +1,9 @@
 # Organization privacy policies and contact update
 
+The organization-site ZIP also adds package-specific Google Play links to the six
+known app cards, plus the developer-page link. Live Google Play access is blocked,
+so these entries are not a verified complete developer-account inventory.
+
 Every policy in these downloads lists **andrix.android@gmail.com** for privacy
 questions. Contact information was checked and normalized on 24 October 2026.
 The data-practice disclosures are unchanged. Original import hashes in
