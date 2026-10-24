@@ -1,0 +1,1203 @@
+From 0dd710966051d9aa84fcad57ff6a97f56307fd44 Mon Sep 17 00:00:00 2001
+From: Ashwin S Ashok <ashwin.s.ashok@gmail.com>
+Date: Sat, 24 Oct 2026 07:24:37 +0000
+Subject: [PATCH] Centralize app privacy policies on the organization website
+
+---
+ .nojekyll                    |   0
+ README.md                    |  51 +++-
+ dotdodge.html                | 110 ++++++++
+ english-grammar.html         |  20 ++
+ index.html                   |  13 +-
+ jquery.html                  |  19 ++
+ movies-now.html              | 530 +++++++++++++++++++++++++++++++++++
+ netpulse.html                | 121 ++++++++
+ policies.json                |  44 +++
+ privacy.html                 |   7 +
+ tapsync.html                 | 120 ++++++++
+ tools/check-live-policies.py |  13 +
+ tools/validate-policies.py   |  31 ++
+ 13 files changed, 1073 insertions(+), 6 deletions(-)
+ create mode 100644 .nojekyll
+ create mode 100644 dotdodge.html
+ create mode 100644 english-grammar.html
+ create mode 100644 jquery.html
+ create mode 100644 movies-now.html
+ create mode 100644 netpulse.html
+ create mode 100644 policies.json
+ create mode 100644 privacy.html
+ create mode 100644 tapsync.html
+ create mode 100644 tools/check-live-policies.py
+ create mode 100644 tools/validate-policies.py
+
+diff --git a/.nojekyll b/.nojekyll
+new file mode 100644
+index 0000000..e69de29
+diff --git a/README.md b/README.md
+index 533404d..5e967a3 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,50 @@
+-# Andrix-Software.github.io
+\ No newline at end of file
++# Andrix Software website and privacy policies
++
++Public website: https://andrix-software.github.io/ .
++All app policies: https://andrix-software.github.io/privacy.html .
++
++| App | Privacy policy URL |
++| --- | --- |
++| NetPulse | https://andrix-software.github.io/netpulse.html |
++| TapSync | https://andrix-software.github.io/tapsync.html |
++| Dot Dodge | https://andrix-software.github.io/dotdodge.html |
++| jQuery Learn | https://andrix-software.github.io/jquery.html |
++| English Grammar Learn | https://andrix-software.github.io/english-grammar.html |
++| Movies Now | https://andrix-software.github.io/movies-now.html |
++
++## Migration and maintenance
++
++NetPulse, TapSync and Dot Dodge were copied from
++[ASHWIN-S-ASHOK/andrix-softwares](https://github.com/ASHWIN-S-ASHOK/andrix-softwares).
++The latest policies there take precedence over older app-repository snapshots.
++jQuery and English Grammar were imported from their app repositories. Movies Now
++was imported from the existing `andrix-softwares/projects` policy site.
++The imported policy wording and effective dates are unchanged. `policies.json`
++records each source and its import hash for migration verification.
++
++Make future policy changes here. Update a policy's date when its disclosures
++change. Migration alone is not an audit or a change in data practices. Individual
++policies retain their existing privacy contacts. The old personal policy site keeps its existing pages available, so existing
++store links still provide policy text during migration. Only update old links
++after confirming the organization pages are live.
++
++Before updating Play Console, confirm each new URL loads publicly without
++sign-in. Set both the store listing and any in-app policy link to the same URL.
++Keep the old URLs available for installed versions that still use them.
++Kids-Coloring-Painting and puzzle-battler have no supplied policy page; do not
++reuse another app's policy for those apps.
++
++## Hosting and validation
++
++Plain HTML; no framework or analytics scripts are required. Preserve the existing
++GitHub Pages settings. If Pages needs activation, use **Settings → Pages → Deploy
++from a branch → main → / (root)**. `.nojekyll` skips Jekyll processing.
++`app-ads.txt` remains at the site root for advertising-seller verification.
++
++Run `python3 tools/validate-policies.py` to validate page structure, index links,
++and the seller file. Add `--verify-imports` to check the original migration hashes
++before the first publication; later policy edits naturally change those hashes. Public Pages deployment must also be checked independently; a
++successful Git push does not prove that the website has deployed.
++
++After deployment, run `python3 tools/check-live-policies.py` to confirm all six
++public pages match these policies. This needs network access to the Pages host.
+diff --git a/dotdodge.html b/dotdodge.html
+new file mode 100644
+index 0000000..ee68e6e
+--- /dev/null
++++ b/dotdodge.html
+@@ -0,0 +1,110 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<title>Dot Dodge - Privacy Policy</title>
++<style>
++  :root {
++    --bg: #fafafa;
++    --fg: #1a1a1a;
++    --muted: #555;
++    --border: #e0e0e0;
++    --accent: #087e70;
++  }
++  @media (prefers-color-scheme: dark) {
++    :root {
++      --bg: #0e1218;
++      --fg: #e6ebf2;
++      --muted: #8a95a6;
++      --border: #1e242e;
++      --accent: #5ee9c8;
++    }
++  }
++  * { box-sizing: border-box; margin: 0; padding: 0; }
++  body {
++    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
++    background: var(--bg);
++    color: var(--fg);
++    line-height: 1.7;
++    padding: 2rem 1.25rem;
++    max-width: 720px;
++    margin: 0 auto;
++  }
++  h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
++  h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.5rem; }
++  h3 { font-size: 1.05rem; margin-top: 1.25rem; margin-bottom: 0.35rem; }
++  p, ul { margin-bottom: 1rem; }
++  ul { padding-left: 1.5rem; }
++  li { margin-bottom: 0.35rem; }
++  .updated { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
++  a { color: var(--accent); }
++  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
++  .back { display: inline-block; margin-bottom: 1rem; }
++  .identity { padding: 1rem; border: 1px solid var(--border); border-radius: 8px; }
++  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
++</style>
++</head>
++<body>
++<nav aria-label="Policy navigation"><a class="back" href="index.html">&larr; All privacy policies</a></nav>
++<main>
++<h1>Dot Dodge Privacy Policy</h1>
++<p class="updated">Effective and last updated: October 3, 2026</p>
++<p class="identity"><strong>App:</strong> Dot Dodge for Android<br>
++<strong>Package:</strong> com.andrix.dotdodge<br>
++<strong>Developer and privacy contact:</strong> Ashwin S Ashok &mdash;
++<a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a></p>
++<p>This policy explains how Dot Dodge handles information when you play, view ads, use optional purchases, or enable diagnostics. No Dot Dodge account is required. Some features depend on the build, Google Play availability, and your privacy choices.</p>
++
++<h2>1. Game progress stored on your device</h2>
++<p>The app saves scores, personal bests, coins, mission progress, statistics, cosmetic unlocks, daily-reward status, Premium access status, and settings in its local app storage. There is no player-account system or cloud-save service in Dot Dodge. The complete game save is not uploaded to us. Selected gameplay events and scores may be sent separately if you enable Usage analytics, as described below.</p>
++<p>Dot Dodge does not request access to your contacts, photos, microphone, camera, or precise device location. Network services can receive your IP address and infer an approximate location without a device location permission.</p>
++
++<h2>2. Advertising and ad consent</h2>
++<p>Dot Dodge integrates Google AdMob for rewarded ads and, where enabled, interstitial ads between runs. Google and its advertising partners may process IP addresses, approximate location inferred from IP, advertising or app-set identifiers, ad interactions, and device or diagnostic information to deliver ads, measure performance, and prevent fraud. The information processed depends on your device settings, consent, and Google's ad configuration. Non-personalized ads may still involve data processing.</p>
++<p>The app uses Google's User Messaging Platform to request applicable advertising consent. Where Google requires a privacy-options entry point, you can revisit it through <strong>Settings &gt; Ad privacy choices</strong>. Android settings also provide advertising-ID controls. The app's optional Usage analytics and Crash reports switches do not disable AdMob's separate data processing.</p>
++<p>See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> and <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google Mobile Ads SDK data disclosures</a> for advertising data details.</p>
++
++<h2>3. Optional usage analytics</h2>
++<p><strong>Usage analytics starts off.</strong> If you enable it in Settings, Google Analytics for Firebase receives limited gameplay events: mode selection, run start/end, score and new-best status, star collection, revives, ad format shown, Premium activation, and support-link use. The SDK may also process app-instance identifiers, device/app information, sessions, and interactions to produce usage reports.</p>
++<p>Our event code does not send your name, email address, purchase token, payment details, or a player-account ID to Analytics. Firebase Analytics advertising-ID collection is disabled in the app, and its advertising-storage and ad-personalization consent flags remain denied. AdMob is configured separately.</p>
++
++<h2>4. Optional crash reporting</h2>
++<p><strong>The Crash reports option starts off independently of Usage analytics.</strong> If enabled, Firebase Crashlytics processes Java/native crash traces and selected nonfatal error codes, app/device details, installation identifiers, and game-mode context to help us fix failures. Gameplay event breadcrumbs can accompany a report when both options are enabled. Native crash processing may include diagnostic minidump data. We do not intentionally attach purchase receipts or free-form personal information to crash reports.</p>
++<p>These services are described in <a href="https://firebase.google.com/support/privacy">Firebase's privacy and security information</a> and <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Development builds may pause collection even when your choices are saved.</p>
++
++<h2>5. Purchases and verification</h2>
++<p>Where available, optional Premium purchases are processed by Google Play Billing. Google handles payment information; Dot Dodge does not receive your card number or billing address. The app receives product identifiers, purchase tokens, and purchase state to unlock and restore access.</p>
++<p>When production purchase verification is enabled, the app sends the product identifier and purchase token over HTTPS to our verification service. That service checks and acknowledges the purchase with Google Play. Purchase tokens are not sent to Analytics or Crashlytics. The current verification code does not persist receipt tokens in a database or intentionally log them. Hosting infrastructure may process connection metadata for operation and security. We store Premium access status locally so it can be used in later sessions.</p>
++
++<h2>6. Support and this policy website</h2>
++<p>If you email us, we receive the address and information you choose to include so we can answer your request. Please do not send passwords or full payment-card details.</p>
++<p>This policy is hosted on GitHub Pages. Visiting it sends normal web-request information, such as your IP address, to GitHub. This page contains no analytics scripts, advertising scripts, or embedded tracking assets. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's Privacy Statement</a>.</p>
++
++<h2>7. Sharing, security, and international processing</h2>
++<p>Information is processed by Google for advertising, analytics, diagnostics, and billing as described above, and by service providers needed to host the policy or an enabled purchase verifier. We do not sell the local game-save file or deliberately provide names or contact details to advertisers. Advertising identifiers and ad interactions may be shared through Google's advertising services under their terms and your choices.</p>
++<p>Network transfers to these services use encrypted connections. We take reasonable steps to limit access and avoid putting receipts or personal text in diagnostics. Local game storage is not represented as an encrypted vault, and no security measure can guarantee absolute protection. Google, GitHub, and hosting providers may process information in countries outside yours under their applicable safeguards and policies.</p>
++
++<h2>8. Retention and deletion</h2>
++<p>Local progress remains until you clear the app's storage or uninstall it. Google's analytics, advertising, billing, and diagnostic records follow each service's retention rules and applicable configuration; withdrawing consent does not automatically erase records already sent. Purchase records held by Google Play may be retained for transaction and legal purposes. We keep support correspondence only as needed to respond, handle follow-up, and meet applicable obligations.</p>
++<p>For a privacy or deletion request, email <a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a> with "Dot Dodge privacy request" in the subject. We will use the information reasonably available to locate records we control. Because the game has no player account and some SDK data is identified only by installation identifiers, we may need additional details to locate relevant data. Do not email full payment information.</p>
++
++<h2>9. Your choices and rights</h2>
++<ul>
++<li><strong>Usage analytics:</strong> turn it off in Settings to stop optional gameplay reporting and reset local Analytics data.</li>
++<li><strong>Crash reports:</strong> turn it off in Settings to stop optional crash-report submission and delete pending unsent reports.</li>
++<li><strong>Advertising:</strong> use Ad privacy choices when available and Android's advertising controls. You may decline optional rewarded ads.</li>
++<li><strong>Local progress:</strong> clear Dot Dodge's storage through Android settings or uninstall the app. This removes local progress and settings; it does not cancel a Google Play transaction or delete previously submitted service records.</li>
++<li><strong>Purchases:</strong> manage eligible refunds and purchase history through Google Play. Restoring a purchase may require an internet connection.</li>
++</ul>
++<p>Depending on your location, you may have rights to access, correct, delete, restrict, or object to personal-data processing, withdraw consent, or complain to a data-protection authority. Contact us to make a request concerning data we control; Google and GitHub also provide their own privacy controls.</p>
++
++<h2>10. Children's privacy</h2>
++<p>We do not ask players to create an account or provide their name or age. Please follow the age guidance on the app's Google Play listing. If a parent or guardian believes a child has provided personal information to us, contact the privacy address above so we can investigate and remove information within our control as appropriate. Advertising and diagnostics remain subject to the consent controls described in this policy.</p>
++
++<h2>11. Changes and contact</h2>
++<p>We will post policy changes on this page and update the date above. Where required, material changes to data processing will be accompanied by additional notice or consent.</p>
++<p>Privacy questions, deletion requests, and support: <a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a><br>Developer: Ashwin S Ashok.</p>
++</main>
++</body>
++</html>
+diff --git a/english-grammar.html b/english-grammar.html
+new file mode 100644
+index 0000000..9d250bd
+--- /dev/null
++++ b/english-grammar.html
+@@ -0,0 +1,20 @@
++<!doctype html>
++<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
++<title>English Grammar Learn — Privacy policy</title>
++<style>body{max-width:760px;margin:48px auto;padding:0 24px;font:17px/1.7 system-ui,sans-serif;color:#272942;background:#f7f6f2}h1,h2{color:#363a72}a{color:#363a72}</style>
++<main>
++<h1>English Grammar Learn privacy policy</h1>
++<p>Effective date: 16 October 2026. This policy covers English Grammar Learn version 2.1 and later, package <code>com.andrix.englishgrammar</code>, published by the developer using the GitHub identity ASHWIN-S-ASHOK.</p>
++<h2>Offline learning and local storage</h2>
++<p>Lessons, practice examples and quizzes are bundled with the app. Bookmarks, completed lessons, reading preferences, last lesson and quiz best score are stored locally on your device. The app does not require an account and does not operate its own server for this information. Clearing app storage or uninstalling deletes local progress.</p>
++<h2>Advertising and third-party services</h2>
++<p>The app uses Google AdMob banner and optional interstitial advertising and Google's User Messaging Platform for consent and privacy choices. These services use network access. Google's advertising SDK may collect and share IP addresses (which can infer approximate location), device or other identifiers, advertising interactions and diagnostic/performance information. Google processes this information for advertising, measurement, security, fraud prevention and other purposes described in its policies. The app does not intentionally send your lesson text, bookmarks or quiz answers to Google.</p>
++<p>See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> and <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google Mobile Ads SDK data disclosures</a> for current details. Google controls its processing and retention.</p>
++<h2>Consent and choices</h2>
++<p>Where required, Google's consent form is requested before advertisements load. Use the app's <strong>Ad privacy</strong> control to read a summary and reopen available Google privacy choices. Available options depend on region and Google's consent requirements. Your Android device settings also provide advertising identifier and privacy controls. Learning content remains available offline and is not conditional on a purchase.</p>
++<h2>Older versions</h2><p>The legacy version 1 included AppBrain. AppBrain is removed from this upgraded app. Disclosures for any older version still distributed must cover that version separately.</p>
++<h2>Purchases</h2>
++<p>This version does not include in-app purchases or subscriptions and does not collect payment details.</p>
++<h2>Contact and changes</h2>
++<p>For questions or deletion requests, contact the developer through the support email displayed on this app's Google Play listing. Locally stored progress can be deleted directly by clearing app storage. This policy will be updated when the app's data practices change.</p>
++</main></html>
+diff --git a/index.html b/index.html
+index 5569cc8..67d7a10 100644
+--- a/index.html
++++ b/index.html
+@@ -7,20 +7,23 @@
+ <meta name="theme-color" content="#101b28">
+ <title>Andrix Software — Apps & games for Android</title>
+ <style>
+-:root{color-scheme:dark;--bg:#101b28;--text:#f5f4ee;--muted:#bac7d3;--accent:#b8ed95;--line:#344353}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit;text-underline-offset:5px}a:hover{color:var(--accent)}a:focus-visible{outline:3px solid var(--accent);outline-offset:6px}.wrap{max-width:1120px;margin:auto;padding:0 28px}header{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}.brand{font-size:18px;font-weight:750;text-decoration:none;letter-spacing:-.5px}.brand span{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--accent);color:var(--bg);border-radius:10px;margin-right:10px}nav{display:flex;gap:24px;font-size:14px}nav a{text-decoration:none}.hero{padding:100px 0 90px;max-width:850px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700;color:var(--accent)}h1{font-size:clamp(44px,7vw,82px);line-height:1.07;letter-spacing:-3px;margin:20px 0 28px;font-weight:650}h1 em{font-style:normal;color:var(--accent)}.intro{max-width:580px;font-size:19px;color:var(--muted)}.button{display:inline-block;margin-top:20px;background:var(--accent);color:var(--bg);padding:12px 22px;border-radius:7px;font-weight:700;text-decoration:none}.button:hover{background:#d0f6b9;color:var(--bg)}section{scroll-margin-top:30px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:25px;margin-bottom:30px}h2{font-size:28px;letter-spacing:-1px;margin:0}.section-head p{color:var(--muted);font-size:14px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{border:1px solid var(--line);border-radius:14px;padding:28px;background:#152332;display:flex;flex-direction:column}.icon{width:50px;height:50px;display:grid;place-items:center;border-radius:13px;background:#243b46;color:var(--accent);font-size:25px;font-weight:700}.tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:24px 0 4px}.card h3{font-size:24px;margin:0}.card p{color:var(--muted);font-size:15px;margin-bottom:26px}.card a{margin-top:auto;font-size:14px}.support{margin:75px 0 60px;padding:38px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:30px}.support p{color:var(--muted);max-width:500px;margin-bottom:0}.support a{overflow-wrap:anywhere}footer{border-top:1px solid var(--line);padding:25px 0 35px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.skip{position:absolute;left:15px;top:-80px;background:var(--bg);padding:10px;z-index:2}.skip:focus{top:10px}@media(max-width:700px){.wrap{padding:0 20px}header{gap:16px}nav{gap:15px}.brand{font-size:15px}.hero{padding:65px 0}h1{letter-spacing:-2px}.cards{grid-template-columns:1fr}.section-head,.support,footer{align-items:flex-start;flex-direction:column}.section-head{gap:0}.support{padding:25px;margin-top:45px}.intro{font-size:17px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
++:root{color-scheme:dark;--bg:#101b28;--text:#f5f4ee;--muted:#bac7d3;--accent:#b8ed95;--line:#344353}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit;text-underline-offset:5px}a:hover{color:var(--accent)}a:focus-visible{outline:3px solid var(--accent);outline-offset:6px}.wrap{max-width:1120px;margin:auto;padding:0 28px}header{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 0;border-bottom:1px solid var(--line)}.brand{font-size:18px;font-weight:750;text-decoration:none;letter-spacing:-.5px}.brand span{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--accent);color:var(--bg);border-radius:10px;margin-right:10px}nav{display:flex;gap:24px;font-size:14px}nav a{text-decoration:none}.hero{padding:100px 0 90px;max-width:850px}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;font-weight:700;color:var(--accent)}h1{font-size:clamp(44px,7vw,82px);line-height:1.07;letter-spacing:-3px;margin:20px 0 28px;font-weight:650}h1 em{font-style:normal;color:var(--accent)}.intro{max-width:580px;font-size:19px;color:var(--muted)}.button{display:inline-block;margin-top:20px;background:var(--accent);color:var(--bg);padding:12px 22px;border-radius:7px;font-weight:700;text-decoration:none}.button:hover{background:#d0f6b9;color:var(--bg)}section{scroll-margin-top:30px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:25px;margin-bottom:30px}h2{font-size:28px;letter-spacing:-1px;margin:0}.section-head p{color:var(--muted);font-size:14px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{border:1px solid var(--line);border-radius:14px;padding:28px;background:#152332;display:flex;flex-direction:column}.icon{width:50px;height:50px;display:grid;place-items:center;border-radius:13px;background:#243b46;color:var(--accent);font-size:25px;font-weight:700}.tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin:24px 0 4px}.card h3{font-size:24px;margin:0}.card p{color:var(--muted);font-size:15px;margin-bottom:26px}.card a{margin-top:auto;font-size:14px}.support{margin:75px 0 60px;padding:38px;border:1px solid var(--line);border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:30px}.support p{color:var(--muted);max-width:500px;margin-bottom:0}.support a{overflow-wrap:anywhere}footer{border-top:1px solid var(--line);padding:25px 0 35px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}.skip{position:absolute;left:15px;top:-80px;background:var(--bg);padding:10px;z-index:2}.skip:focus{top:10px}@media(max-width:700px){.wrap{padding:0 20px}header{gap:16px;flex-wrap:wrap}nav{gap:15px}.brand{font-size:15px}.hero{padding:65px 0}h1{letter-spacing:-2px}.cards{grid-template-columns:1fr}.section-head,.support,footer{align-items:flex-start;flex-direction:column}.section-head{gap:0}.support{padding:25px;margin-top:45px}.intro{font-size:17px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+ </style>
+ </head>
+ <body>
+ <a class="skip" href="#main">Skip to content</a>
+ <div class="wrap">
+-<header><a class="brand" href="/" aria-label="Andrix Software home"><span aria-hidden="true">A</span>Andrix Software</a><nav aria-label="Main navigation"><a href="#apps">Apps</a><a href="#support">Support</a></nav></header>
++<header><a class="brand" href="/" aria-label="Andrix Software home"><span aria-hidden="true">A</span>Andrix Software</a><nav aria-label="Main navigation"><a href="#apps">Apps</a><a href="privacy.html">Privacy</a><a href="#support">Support</a></nav></header>
+ <main id="main">
+ <div class="hero"><div class="eyebrow">Independent Android development</div><h1>A little utility.<br>A little <em>play.</em></h1><p class="intro">Android tools and games from Andrix Software. Explore our apps, find privacy information, or get in touch for support.</p><a class="button" href="#apps">Explore our apps <span aria-hidden="true">↗</span></a></div>
+ <section id="apps" aria-labelledby="apps-title"><div class="section-head"><h2 id="apps-title">Our apps</h2><p>Tools for your day. Games for your downtime.</p></div>
+ <div class="cards">
+-<article class="card"><div class="icon" aria-hidden="true">≈</div><div class="tag">Network utility</div><h3>NetPulse</h3><p>Network diagnostics and speed testing for Android.</p><a href="https://ashwin-s-ashok.github.io/andrix-softwares/netpulse.html">NetPulse privacy policy ↗</a></article>
+-<article class="card"><div class="icon" aria-hidden="true">◎</div><div class="tag">Timing game</div><h3>TapSync</h3><p>A timing and rhythm game for Android. Intended for adults aged 18 and over.</p><a href="https://ashwin-s-ashok.github.io/andrix-softwares/tapsync.html">TapSync privacy policy ↗</a></article>
+-<article class="card"><div class="icon" aria-hidden="true">↗</div><div class="tag">Arcade game</div><h3>Dot Dodge</h3><p>An arcade survival game for Android.</p><a href="https://ashwin-s-ashok.github.io/andrix-softwares/dotdodge.html">Dot Dodge privacy policy ↗</a></article>
++<article class="card"><div class="icon" aria-hidden="true">≈</div><div class="tag">Network utility</div><h3>NetPulse</h3><p>Network diagnostics and speed testing for Android.</p><a href="netpulse.html">NetPulse privacy policy ↗</a></article>
++<article class="card"><div class="icon" aria-hidden="true">◎</div><div class="tag">Timing game</div><h3>TapSync</h3><p>A timing and rhythm game for Android. Intended for adults aged 18 and over.</p><a href="tapsync.html">TapSync privacy policy ↗</a></article>
++<article class="card"><div class="icon" aria-hidden="true">↗</div><div class="tag">Arcade game</div><h3>Dot Dodge</h3><p>An arcade survival game for Android.</p><a href="dotdodge.html">Dot Dodge privacy policy ↗</a></article>
++<article class="card"><div class="icon" aria-hidden="true">jQ</div><div class="tag">Learning</div><h3>jQuery Learn</h3><p>Offline lessons, coding practice and quizzes.</p><a href="jquery.html">jQuery Learn privacy policy ↗</a></article>
++<article class="card"><div class="icon" aria-hidden="true">Aa</div><div class="tag">Learning</div><h3>English Grammar</h3><p>Grammar lessons, exercises, flashcards and quizzes.</p><a href="english-grammar.html">English Grammar privacy policy ↗</a></article>
++<article class="card"><div class="icon" aria-hidden="true">▶</div><div class="tag">Movie discovery</div><h3>Movies Now</h3><p>Movie and streaming discovery for Android.</p><a href="movies-now.html">Movies Now privacy policy ↗</a></article>
+ </div></section>
+ <section class="support" id="support" aria-labelledby="support-title"><div><div class="eyebrow">Get in touch</div><h2 id="support-title">Need a hand?</h2><p>For app support or privacy questions, email us with the app name and a short description of how we can help.</p></div><a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com ↗</a></section>
+ </main>
+diff --git a/jquery.html b/jquery.html
+new file mode 100644
+index 0000000..3744bdf
+--- /dev/null
++++ b/jquery.html
+@@ -0,0 +1,19 @@
++<!doctype html>
++<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
++<title>jQuery Learn — Privacy policy</title>
++<style>body{max-width:760px;margin:48px auto;padding:0 24px;font:17px/1.7 system-ui,sans-serif;color:#182c28;background:#f7f8f2}h1,h2{color:#075e54}a{color:#075e54}</style>
++<main>
++<h1>jQuery Learn privacy policy</h1>
++<p>Effective date: 15 October 2026. This policy covers jQuery Learn version 2.1 and later, package <code>com.andrix.jquery</code>, published by the developer using the GitHub identity ASHWIN-S-ASHOK.</p>
++<h2>Offline learning and local storage</h2>
++<p>Lessons, practice examples and quizzes are bundled with the app. Bookmarks, completed lessons, reading preferences, last lesson and quiz best score are stored locally on your device. The app does not require an account and does not operate its own server for this information. Clearing app storage or uninstalling deletes local progress.</p>
++<h2>Advertising and third-party services</h2>
++<p>The app uses Google AdMob banner advertising and Google's User Messaging Platform for consent and privacy choices. These services use network access. Google's advertising SDK may collect and share IP addresses (which can infer approximate location), device or other identifiers, advertising interactions and diagnostic/performance information. Google processes this information for advertising, measurement, security, fraud prevention and other purposes described in its policies. The app does not intentionally send your lesson text, bookmarks or quiz answers to Google.</p>
++<p>See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a> and <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google Mobile Ads SDK data disclosures</a> for current details. Google controls its processing and retention.</p>
++<h2>Consent and choices</h2>
++<p>Where required, Google's consent form is requested before advertisements load. Use the app's <strong>Ad privacy</strong> control to read a summary and reopen available Google privacy choices. Available options depend on region and Google's consent requirements. Your Android device settings also provide advertising identifier and privacy controls. Learning content remains available offline and is not conditional on a purchase.</p>
++<h2>Purchases</h2>
++<p>This version does not include in-app purchases or subscriptions and does not collect payment details.</p>
++<h2>Contact and changes</h2>
++<p>For questions or deletion requests, contact the developer through the support email displayed on this app's Google Play listing. Locally stored progress can be deleted directly by clearing app storage. This policy will be updated when the app's data practices change.</p>
++</main></html>
+diff --git a/movies-now.html b/movies-now.html
+new file mode 100644
+index 0000000..0ea8d0b
+--- /dev/null
++++ b/movies-now.html
+@@ -0,0 +1,530 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++    <meta charset="UTF-8">
++    <meta name="viewport" content="width=device-width, initial-scale=1.0">
++    <meta name="description" content="Privacy Policy for Movies Now - Movie and OTT Discovery App">
++    <title>Movies Now - Privacy Policy</title>
++    <style>
++        * {
++            margin: 0;
++            padding: 0;
++            box-sizing: border-box;
++        }
++
++        body {
++            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
++            line-height: 1.6;
++            color: #333;
++            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++            min-height: 100vh;
++            padding: 20px;
++        }
++
++        .container {
++            max-width: 800px;
++            margin: 0 auto;
++            background: white;
++            border-radius: 12px;
++            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
++            overflow: hidden;
++        }
++
++        header {
++            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++            color: white;
++            padding: 40px 30px;
++            text-align: center;
++        }
++
++        header h1 {
++            font-size: 2.5rem;
++            margin-bottom: 10px;
++            font-weight: 700;
++        }
++
++        header .subtitle {
++            font-size: 1rem;
++            opacity: 0.9;
++            margin-bottom: 15px;
++        }
++
++        header .date {
++            font-size: 0.9rem;
++            opacity: 0.8;
++        }
++
++        main {
++            padding: 40px 30px;
++        }
++
++        .intro-card {
++            background: #f8f9fa;
++            border-left: 4px solid #667eea;
++            padding: 20px;
++            margin-bottom: 30px;
++            border-radius: 6px;
++        }
++
++        .intro-card p {
++            margin-bottom: 10px;
++        }
++
++        section {
++            margin-bottom: 35px;
++        }
++
++        section h2 {
++            font-size: 1.5rem;
++            color: #667eea;
++            margin-bottom: 15px;
++            padding-bottom: 10px;
++            border-bottom: 2px solid #e0e0e0;
++        }
++
++        section h3 {
++            font-size: 1.1rem;
++            color: #764ba2;
++            margin-top: 20px;
++            margin-bottom: 10px;
++        }
++
++        p {
++            margin-bottom: 12px;
++            text-align: justify;
++        }
++
++        ul, ol {
++            margin-left: 25px;
++            margin-bottom: 15px;
++        }
++
++        li {
++            margin-bottom: 8px;
++        }
++
++        .highlight {
++            background: #fff3cd;
++            padding: 15px;
++            border-radius: 6px;
++            border-left: 4px solid #ffc107;
++            margin: 20px 0;
++            font-weight: 500;
++        }
++
++        .tmdb-attribution {
++            background: #e8f4f8;
++            padding: 20px;
++            border-radius: 6px;
++            border-left: 4px solid #0066cc;
++            margin: 20px 0;
++            font-style: italic;
++            color: #0066cc;
++        }
++
++        .policy-table {
++            width: 100%;
++            border-collapse: collapse;
++            margin: 15px 0;
++        }
++
++        .policy-table th {
++            background: #667eea;
++            color: white;
++            padding: 12px;
++            text-align: left;
++            font-weight: 600;
++        }
++
++        .policy-table td {
++            padding: 12px;
++            border-bottom: 1px solid #e0e0e0;
++        }
++
++        .policy-table tr:nth-child(even) {
++            background: #f8f9fa;
++        }
++
++        footer {
++            background: #2c3e50;
++            color: white;
++            text-align: center;
++            padding: 30px;
++            margin-top: 40px;
++        }
++
++        footer p {
++            margin-bottom: 8px;
++            text-align: center;
++        }
++
++        .contact-info {
++            background: #f0f4ff;
++            padding: 20px;
++            border-radius: 6px;
++            margin: 15px 0;
++            border-left: 4px solid #667eea;
++        }
++
++        .contact-info a {
++            color: #667eea;
++            text-decoration: none;
++            font-weight: 600;
++        }
++
++        .contact-info a:hover {
++            text-decoration: underline;
++        }
++
++        @media (max-width: 600px) {
++            header h1 {
++                font-size: 1.8rem;
++            }
++
++            main {
++                padding: 25px 20px;
++            }
++
++            section h2 {
++                font-size: 1.2rem;
++            }
++
++            section h3 {
++                font-size: 1rem;
++            }
++
++            p {
++                font-size: 0.95rem;
++            }
++
++            .policy-table {
++                font-size: 0.9rem;
++            }
++
++            .policy-table th,
++            .policy-table td {
++                padding: 8px;
++            }
++        }
++
++        .last-updated {
++            font-size: 0.85rem;
++            color: #666;
++            margin-top: 20px;
++            text-align: center;
++        }
++    </style>
++</head>
++<body>
++    <div class="container">
++        <header>
++            <h1>🎬 Movies Now</h1>
++            <div class="subtitle">Privacy Policy</div>
++            <div class="date">Last Updated: 20/07/2026</div>
++        </header>
++
++        <main>
++            <div class="intro-card">
++                <p><strong>Welcome to Movies Now!</strong></p>
++                <p>Your privacy is important to us. This Privacy Policy explains how our app collects, uses, discloses, and safeguards your information. Please read this policy carefully to understand our practices.</p>
++            </div>
++
++            <!-- Section 1: Introduction -->
++            <section>
++                <h2>1. Introduction</h2>
++                <p>Movies Now (hereinafter "the App") is a mobile application available on Google Play designed to help users discover movies and OTT releases. This Privacy Policy applies to all users of the App and covers how we handle personal and non-personal information collected through the application.</p>
++                <p>By downloading, installing, and using Movies Now, you acknowledge that you have read, understood, and agree to be bound by this Privacy Policy. If you do not agree with our practices, please do not use the App.</p>
++            </section>
++
++            <!-- Section 2: Information We Collect -->
++            <section>
++                <h2>2. Information We Collect</h2>
++                <p>We collect various types of information to provide and improve the Movies Now experience:</p>
++                
++                <h3>Device Information</h3>
++                <ul>
++                    <li>Device type, model, and operating system</li>
++                    <li>Device identifiers (including AAID and GAID)</li>
++                    <li>Screen size and display information</li>
++                    <li>Device language and locale settings</li>
++                </ul>
++
++                <h3>Usage Data</h3>
++                <ul>
++                    <li>Movies and shows you view or search for</li>
++                    <li>Features used within the application</li>
++                    <li>Ad interactions and viewing patterns</li>
++                    <li>Crash reports and error logs</li>
++                    <li>Time spent in the application</li>
++                </ul>
++
++                <h3>Network Information</h3>
++                <ul>
++                    <li>IP address</li>
++                    <li>Approximate geolocation (derived from IP)</li>
++                    <li>Internet service provider (ISP) information</li>
++                </ul>
++
++                <h3>Information You Provide</h3>
++                <ul>
++                    <li>Preferences for movie recommendations</li>
++                    <li>Search queries and filters</li>
++                    <li>Any feedback or bug reports you submit</li>
++                </ul>
++
++                <div class="highlight">
++                    <strong>Note:</strong> We do not collect, store, or transmit any personally identifiable information (PII) such as your name, email address, phone number, or social security number unless you voluntarily provide it through feedback or support requests.
++                </div>
++            </section>
++
++            <!-- Section 3: TMDB API Usage -->
++            <section>
++                <h2>3. The Movie Database (TMDB) API</h2>
++                <p>Movies Now utilizes The Movie Database (TMDB) API to provide movie, show, and OTT release information. The data displayed in the App originates from TMDB's database.</p>
++                
++                <div class="tmdb-attribution">
++                    This product uses the TMDB API but is not endorsed or certified by TMDB.
++                </div>
++
++                <h3>TMDB Data Usage</h3>
++                <ul>
++                    <li>We fetch movie metadata (titles, descriptions, ratings, cast, genres)</li>
++                    <li>We retrieve OTT availability information</li>
++                    <li>We access poster images and promotional content</li>
++                    <li>Your API queries to TMDB may be logged by TMDB according to their Privacy Policy</li>
++                </ul>
++
++                <p>For information about how TMDB collects and processes data, please refer to TMDB's Privacy Policy at <strong>https://www.themoviedb.org/settings/privacy</strong></p>
++            </section>
++
++            <!-- Section 4: Advertising and Google AdMob -->
++            <section>
++                <h2>4. Advertising</h2>
++                <p>Movies Now displays advertisements provided by Google AdMob to keep the application free to use. These ads may be personalized based on your interests and usage patterns.</p>
++
++                <h3>Types of Ads</h3>
++                <ul>
++                    <li><strong>Banner Ads:</strong> Static or animated ads displayed at the top or bottom of screens</li>
++                    <li><strong>Interstitial Ads:</strong> Full-screen ads that appear between app transitions</li>
++                    <li><strong>Rewarded Ads:</strong> Ads that reward you with in-app Credits upon completion</li>
++                </ul>
++
++                <h3>Google AdMob Data Collection</h3>
++                <p>Google AdMob collects and processes the following data for ad personalization:</p>
++                <ul>
++                    <li>Device identifiers (AAID, GAID)</li>
++                    <li>IP address and approximate location</li>
++                    <li>Browsing and app usage history</li>
++                    <li>Demographic information (age, gender - estimated)</li>
++                    <li>Interests and preferences</li>
++                </ul>
++
++                <p>Google uses this data to serve personalized ads across its advertising network. You can opt out of personalized ads by adjusting your Google Ad Settings. For more details on Google's data practices, visit <strong>https://policies.google.com/privacy</strong></p>
++
++                <div class="highlight">
++                    <strong>Ad Tracking:</strong> You can limit ad tracking by enabling "Limit Ad Tracking" in your device settings. This does not eliminate ads but reduces personalization.
++                </div>
++            </section>
++
++            <!-- Section 5: Rewarded Ads & Credits System -->
++            <section>
++                <h2>5. Rewarded Ads & Credits System</h2>
++                <p>Movies Now features a Credits system that allows you to earn virtual currency by watching rewarded advertisements. These Credits can be used for premium features without requiring real money.</p>
++
++                <h3>How Credits Work</h3>
++                <ul>
++                    <li>You can watch rewarded ads to earn Credits</li>
++                    <li>Each completed rewarded ad earns you a fixed number of Credits</li>
++                    <li>Credits are stored locally on your device</li>
++                    <li>Credits do not expire and are tied to your device installation</li>
++                </ul>
++
++                <h3>Credit Usage</h3>
++                <p>Credits can be used to:</p>
++                <ul>
++                    <li>Download movie poster images and promotional content</li>
++                    <li>Add movies to your watchlist with priority status</li>
++                    <li>Enable and extend push notification features</li>
++                </ul>
++
++                <div class="highlight">
++                    <strong>Important:</strong> Credits are device-specific and will be lost if you uninstall the app or clear app data. We do not provide refunds, exchanges, or recovery of lost Credits.
++                </div>
++            </section>
++
++            <!-- Section 6: Push Notifications -->
++            <section>
++                <h2>6. Push Notifications</h2>
++                <p>Movies Now can send you push notifications about upcoming movies, OTT releases, and other app-related updates. Notifications are processed locally on your device.</p>
++
++                <h3>Notification Data</h3>
++                <ul>
++                    <li>Notification preferences are stored locally on your device</li>
++                    <li>Subscribed genres and interests are saved locally</li>
++                    <li>Notification history is maintained locally</li>
++                </ul>
++
++                <h3>Managing Notifications</h3>
++                <p>You can enable or disable notifications at any time through the app's Settings menu. You can also manage notification permissions through your device's Settings > Apps > Movies Now > Permissions > Notifications.</p>
++
++                <p><strong>Note:</strong> Disabling notifications may require spending Credits if notifications were enabled as a premium feature.</p>
++            </section>
++
++            <!-- Section 7: Watchlist -->
++            <section>
++                <h2>7. Watchlist (Local Storage Only)</h2>
++                <p>Your watchlist—the list of movies and shows you want to watch—is stored entirely on your device. We do not transmit, store on servers, or sync your watchlist data.</p>
++
++                <h3>Watchlist Storage</h3>
++                <ul>
++                    <li>Watchlist data is saved locally to your device storage</li>
++                    <li>No data is sent to our servers or third-party services</li>
++                    <li>Your watchlist is not backed up to the cloud</li>
++                    <li>Watchlist data will be deleted if you uninstall the app or clear app data</li>
++                </ul>
++
++                <div class="highlight">
++                    <strong>Privacy Advantage:</strong> Since your watchlist is stored locally, only you can access it. No one else, including Movies Now developers, can view your watchlist contents.
++                </div>
++            </section>
++
++            <!-- Section 8: Image Downloads -->
++            <section>
++                <h2>8. Image Downloads</h2>
++                <p>Movies Now allows you to download movie poster images and promotional artwork to your device storage using Credits or premium features.</p>
++
++                <h3>Image Download Information</h3>
++                <ul>
++                    <li>Downloaded images are saved to your device's local storage or external storage (with permission)</li>
++                    <li>Images are sourced from The Movie Database (TMDB) API</li>
++                    <li>Downloaded images are not uploaded to any server</li>
++                    <li>You retain full control over downloaded images on your device</li>
++                    <li>Downloaded images respect TMDB's usage rights and licensing</li>
++                </ul>
++
++                <p><strong>Storage Permissions:</strong> The app requests access to your device storage to save downloaded images. You can grant or deny this permission in your device settings.</p>
++            </section>
++
++            <!-- Section 9: In-App Purchases -->
++            <section>
++                <h2>9. In-App Purchases</h2>
++                <p>Movies Now offers an optional in-app purchase: <strong>Lifetime Premium</strong>, which removes ads and unlocks additional features.</p>
++
++                <h3>Premium Features Include</h3>
++                <ul>
++                    <li>Complete removal of all advertisements</li>
++                    <li>Unlimited image downloads without Credits</li>
++                    <li>Priority watchlist features</li>
++                    <li>Extended notification capabilities</li>
++                </ul>
++
++                <h3>Payment Processing</h3>
++                <p>All in-app purchases are processed through Google Play's billing system. <strong>We do not collect, store, or process payment information.</strong> Payment data is handled exclusively by Google Play according to their terms and privacy policies.</p>
++
++                <ul>
++                    <li>Your payment method (credit card, debit card, Google Play balance) is managed by Google</li>
++                    <li>We receive only confirmation that a purchase was completed</li>
++                    <li>Purchase status is tied to your Google Play account</li>
++                    <li>Refunds for in-app purchases are processed through Google Play</li>
++                </ul>
++
++                <p>For more information on Google Play billing, visit <strong>https://support.google.com/googleplay</strong></p>
++            </section>
++
++            <!-- Section 10: Data Security -->
++            <section>
++                <h2>10. Data Security</h2>
++                <p>We take the security of your information seriously and implement reasonable technical and organizational measures to protect your data.</p>
++
++                <h3>Security Measures</h3>
++                <ul>
++                    <li>Local data is encrypted using device-level encryption (Android OS default)</li>
++                    <li>All communications with APIs use HTTPS encryption</li>
++                    <li>Regular security audits and code reviews</li>
++                    <li>No sensitive data is transmitted unnecessarily</li>
++                </ul>
++
++                <div class="highlight">
++                    <strong>Limitation:</strong> While we implement security measures, no method of transmission over the internet or electronic storage is completely secure. We cannot guarantee absolute security of your information.
++                </div>
++
++                <h3>Device-Level Security</h3>
++                <p>We recommend:</p>
++                <ul>
++                    <li>Keeping your Android device updated with the latest security patches</li>
++                    <li>Using a device lock (PIN, pattern, or biometric)</li>
++                    <li>Installing from authorized sources only (Google Play)</li>
++                    <li>Reviewing app permissions before installation</li>
++                </ul>
++            </section>
++
++            <!-- Section 11: Children's Privacy -->
++            <section>
++                <h2>11. Children's Privacy</h2>
++                <p>Movies Now is not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13.</p>
++
++                <h3>Children's Online Privacy Protection Act (COPPA)</h3>
++                <p>In compliance with COPPA, we do not:</p>
++                <ul>
++                    <li>Knowingly collect personal information from children under 13</li>
++                    <li>Allow parental consent mechanisms for data collection from minors</li>
++                    <li>Target advertising to children under 13</li>
++                </ul>
++
++                <div class="highlight">
++                    <strong>Parental Guidance:</strong> If you are under 18, please review this policy with your parents or guardians. If you are a parent or guardian and believe your child has provided information to Movies Now, please contact us immediately.
++                </div>
++
++                <p>If we become aware that we have collected information from a child under 13 without verifiable parental consent, we will delete such information promptly.</p>
++            </section>
++
++            <!-- Section 12: Changes to Privacy Policy -->
++            <section>
++                <h2>12. Changes to This Privacy Policy</h2>
++                <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. Any material changes will be notified to you through the app with a new "Last Updated" date.</p>
++
++                <h3>How You'll Be Notified</h3>
++                <ul>
++                    <li>A notification will appear in the app upon your next launch after changes</li>
++                    <li>You can always access the updated policy within the app's settings</li>
++                    <li>The "Last Updated" date at the top of this policy indicates the most recent revision</li>
++                </ul>
++
++                <p>Continued use of the app following any changes constitutes your acceptance of the updated Privacy Policy.</p>
++            </section>
++
++            <!-- Section 13: Contact Information -->
++            <section>
++                <h2>13. Contact Information</h2>
++                <p>If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:</p>
++
++                <div class="contact-info">
++                    <p><strong>Email:</strong> <a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a></p>
++                    <p><strong>App:</strong> Movies Now</p>
++                    <p><strong>Platform:</strong> Android (Google Play)</p>
++                    <p style="margin-top: 15px; font-size: 0.9rem;"><strong>Response Time:</strong> We aim to respond to privacy inquiries within 7-14 business days.</p>
++                </div>
++
++                <h3>Your Rights</h3>
++                <ul>
++                    <li><strong>Access:</strong> You have the right to know what data we collect about you</li>
++                    <li><strong>Deletion:</strong> You can request deletion of your data by uninstalling the app and clearing app data</li>
++                    <li><strong>Opt-Out:</strong> You can opt out of personalized ads through your device settings</li>
++                    <li><strong>Inquiry:</strong> You can contact us with privacy-related questions at any time</li>
++                </ul>
++            </section>
++
++            <div class="last-updated">
++                <p><strong>This Privacy Policy is effective as of 20/07/2026</strong></p>
++                <p>Version 3.0 — Movies Now</p>
++            </div>
++        </main>
++
++        <footer>
++            <p>&copy; 2026 Movies Now. All rights reserved.</p>
++            <p>Movies Now is available on <strong>Google Play</strong></p>
++            <p style="margin-top: 15px; font-size: 0.9rem;">For support or inquiries, contact: <strong>andrix.android@gmail.com</strong></p>
++        </footer>
++    </div>
++</body>
++</html>
+diff --git a/netpulse.html b/netpulse.html
+new file mode 100644
+index 0000000..34abff6
+--- /dev/null
++++ b/netpulse.html
+@@ -0,0 +1,121 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<title>NetPulse - Privacy Policy</title>
++<style>
++  :root {
++    --bg: #fafafa;
++    --fg: #1a1a1a;
++    --muted: #555;
++    --border: #e0e0e0;
++    --accent: #2fa98f;
++  }
++  @media (prefers-color-scheme: dark) {
++    :root {
++      --bg: #0e1218;
++      --fg: #e6ebf2;
++      --muted: #8a95a6;
++      --border: #1e242e;
++      --accent: #5ee9c8;
++    }
++  }
++  * { box-sizing: border-box; margin: 0; padding: 0; }
++  body {
++    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
++    background: var(--bg);
++    color: var(--fg);
++    line-height: 1.7;
++    padding: 2rem 1.25rem;
++    max-width: 720px;
++    margin: 0 auto;
++  }
++  h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
++  h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.5rem; }
++  h3 { font-size: 1.05rem; margin-top: 1.25rem; margin-bottom: 0.35rem; }
++  p, ul { margin-bottom: 1rem; }
++  ul { padding-left: 1.5rem; }
++  li { margin-bottom: 0.35rem; }
++  .updated { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
++  a { color: var(--accent); }
++  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
++</style>
++</head>
++<body>
++
++<h1>Privacy Policy</h1>
++<p class="updated">Last updated: September 12, 2026</p>
++
++<p>NetPulse ("we", "our", or "the app") is a network diagnostics application for Android developed by Ashwin S Ashok. This privacy policy explains what information the app collects, how it is used, and your choices.</p>
++
++<h2>Information We Collect</h2>
++
++<h3>Network Diagnostics Data</h3>
++<p>NetPulse performs network measurements including speed tests, latency checks, Wi-Fi signal analysis, and connectivity diagnostics. This data is:</p>
++<ul>
++  <li>Stored <strong>locally on your device</strong> only</li>
++  <li>Never transmitted to our servers</li>
++  <li>Fully under your control &mdash; you can view and delete your test history at any time</li>
++</ul>
++
++<h3>Device and Network Information</h3>
++<p>To perform diagnostics, the app accesses:</p>
++<ul>
++  <li>Network connection type (Wi-Fi, cellular, ethernet)</li>
++  <li>Wi-Fi signal strength and frequency</li>
++  <li>IP address (used locally for network tests, not stored or transmitted)</li>
++  <li>Device model and Android version (for diagnostics display only)</li>
++</ul>
++<p>This information is processed on-device and is not sent to external servers beyond what is required to perform a speed test (connecting to a speed test server to measure throughput).</p>
++
++<h3>Purchase Information</h3>
++<p>NetPulse offers optional in-app purchases (premium subscription and tips) through Google Play Billing. All payment processing is handled entirely by Google Play. We do not collect, store, or have access to your payment details such as credit card numbers or billing addresses.</p>
++
++<h3>Analytics and Crash Reporting</h3>
++<p>If you install the app from a build that includes Firebase services, the app may collect:</p>
++<ul>
++  <li><strong>Crash reports</strong> via Firebase Crashlytics &mdash; stack traces, device model, OS version, and app state at the time of a crash</li>
++  <li><strong>Usage analytics</strong> via Firebase Analytics &mdash; anonymized, aggregate usage patterns such as which features are used and session duration</li>
++</ul>
++<p>This data is processed by Google Firebase in accordance with <a href="https://firebase.google.com/support/privacy">Google's privacy policy</a>. No personally identifiable information is intentionally collected through analytics.</p>
++
++<h2>Information We Do Not Collect</h2>
++<ul>
++  <li>Personal information (name, email, phone number)</li>
++  <li>Location data</li>
++  <li>Contacts, photos, or files</li>
++  <li>Advertising identifiers &mdash; the app contains no ads</li>
++  <li>Browsing history</li>
++</ul>
++
++<h2>Third-Party Services</h2>
++<p>The app integrates the following third-party services:</p>
++<ul>
++  <li><strong>Google Play Billing</strong> &mdash; for processing in-app purchases (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
++  <li><strong>Firebase Crashlytics &amp; Analytics</strong> &mdash; for crash reporting and anonymized usage analytics (<a href="https://firebase.google.com/support/privacy">Firebase Privacy</a>)</li>
++  <li><strong>Speed test servers</strong> &mdash; the app connects to third-party servers to measure network speed; only the data necessary for the test is transmitted (no personal information)</li>
++</ul>
++
++<h2>Data Storage and Security</h2>
++<p>All diagnostic data and test history is stored locally on your device using an encrypted database. No account creation is required to use the app. We do not operate servers that store your data.</p>
++
++<h2>Children's Privacy</h2>
++<p>NetPulse is not directed at children under 13. We do not knowingly collect personal information from children.</p>
++
++<h2>Your Choices</h2>
++<ul>
++  <li><strong>Delete test history</strong>: You can clear your test history from within the app at any time</li>
++  <li><strong>Uninstall</strong>: Removing the app deletes all locally stored data</li>
++  <li><strong>Opt out of analytics</strong>: You can disable analytics collection in your device's Google settings</li>
++</ul>
++
++<h2>Changes to This Policy</h2>
++<p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
++
++<h2>Contact</h2>
++<p>If you have questions about this privacy policy, please contact us at:</p>
++<p><a href="mailto:ashwin.s.ashok@gmail.com">ashwin.s.ashok@gmail.com</a></p>
++
++</body>
++</html>
+diff --git a/policies.json b/policies.json
+new file mode 100644
+index 0000000..8c0c925
+--- /dev/null
++++ b/policies.json
+@@ -0,0 +1,44 @@
++[
++  {
++    "app": "NetPulse",
++    "path": "netpulse.html",
++    "url": "https://andrix-software.github.io/netpulse.html",
++    "source": "https://github.com/ASHWIN-S-ASHOK/andrix-softwares/blob/adb5266417b59c7e371a910008fa19b7f89245b0/netpulse.html",
++    "imported_sha256": "c2db6e3f35738dd21daea858fd4aa69490f4a3f951a1ef11460a2383b500fcde"
++  },
++  {
++    "app": "TapSync",
++    "path": "tapsync.html",
++    "url": "https://andrix-software.github.io/tapsync.html",
++    "source": "https://github.com/ASHWIN-S-ASHOK/andrix-softwares/blob/adb5266417b59c7e371a910008fa19b7f89245b0/tapsync.html",
++    "imported_sha256": "9c686922f2ac75777c26d7dd1d9471c4e96e244a345e0869b2fc9b4fa38a12fc"
++  },
++  {
++    "app": "Dot Dodge",
++    "path": "dotdodge.html",
++    "url": "https://andrix-software.github.io/dotdodge.html",
++    "source": "https://github.com/ASHWIN-S-ASHOK/andrix-softwares/blob/adb5266417b59c7e371a910008fa19b7f89245b0/dotdodge.html",
++    "imported_sha256": "481436125160e4ec1433b8b7071f5c1a489d08dd1c5cad450ef8cfa75810e5f7"
++  },
++  {
++    "app": "jQuery Learn",
++    "path": "jquery.html",
++    "url": "https://andrix-software.github.io/jquery.html",
++    "source": "https://github.com/ASHWIN-S-ASHOK/Jquery/blob/170f97f5743f6652aa05b746bdedb12fec894651/store-listing/privacy-policy.html",
++    "imported_sha256": "7e7ef3e9c2ab244638709661563cc198e33f5217ad014f1f3f287dd930e935b1"
++  },
++  {
++    "app": "English Grammar Learn",
++    "path": "english-grammar.html",
++    "url": "https://andrix-software.github.io/english-grammar.html",
++    "source": "https://github.com/ASHWIN-S-ASHOK/English-Grammar/blob/52da1ddad90ab7208e51e5e5703b45d583fe7151/docs/privacy-policy.html",
++    "imported_sha256": "0cd70461d002fbc36d7563e46298e6eb07218d91a5f95165a5100c88309e969a"
++  },
++  {
++    "app": "Movies Now",
++    "path": "movies-now.html",
++    "url": "https://andrix-software.github.io/movies-now.html",
++    "source": "https://github.com/andrix-softwares/projects/blob/cf47443b72318636411458e15073ae908fdb54f2/privacy-policy.html",
++    "imported_sha256": "deb0def5ce59a58f1d7327dd97c35f3366b0b9adec55c24a6ffae295ce16ae87"
++  }
++]
+diff --git a/privacy.html b/privacy.html
+new file mode 100644
+index 0000000..e3de9ca
+--- /dev/null
++++ b/privacy.html
+@@ -0,0 +1,7 @@
++<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>App privacy policies — Andrix Software</title><style>body{max-width:760px;margin:48px auto;padding:0 24px;background:#101b28;color:#f5f4ee;font:18px/1.7 system-ui,sans-serif}a{color:#b8ed95}li{margin:18px 0}footer{margin-top:36px}</style></head><body><nav><a href="index.html">Andrix Software home</a></nav><main><h1>App privacy policies</h1><p>Select your app to read its policy. Each page describes the app versions and data practices stated in that policy.</p><ul>
++<li><a href="netpulse.html">NetPulse privacy policy</a></li>
++<li><a href="tapsync.html">TapSync privacy policy</a></li>
++<li><a href="dotdodge.html">Dot Dodge privacy policy</a></li>
++<li><a href="jquery.html">jQuery Learn privacy policy</a></li>
++<li><a href="english-grammar.html">English Grammar Learn privacy policy</a></li>
++<li><a href="movies-now.html">Movies Now privacy policy</a></li></ul></main><footer>Support: <a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a>. For a privacy request, use the contact stated in your app's policy.</footer></body></html>
+diff --git a/tapsync.html b/tapsync.html
+new file mode 100644
+index 0000000..1bcf45a
+--- /dev/null
++++ b/tapsync.html
+@@ -0,0 +1,120 @@
++<!DOCTYPE html>
++<html lang="en">
++<head>
++<meta charset="UTF-8">
++<meta name="viewport" content="width=device-width, initial-scale=1.0">
++<title>TapSync - Privacy Policy</title>
++<style>
++  :root {
++    --bg: #fafafa;
++    --fg: #1a1a1a;
++    --muted: #555;
++    --border: #e0e0e0;
++    --accent: #7c4dff;
++  }
++  @media (prefers-color-scheme: dark) {
++    :root {
++      --bg: #0f0f13;
++      --fg: #e6ebf2;
++      --muted: #8a95a6;
++      --border: #1e242e;
++      --accent: #b388ff;
++    }
++  }
++  * { box-sizing: border-box; margin: 0; padding: 0; }
++  body {
++    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
++    background: var(--bg);
++    color: var(--fg);
++    line-height: 1.7;
++    padding: 2rem 1.25rem;
++    max-width: 720px;
++    margin: 0 auto;
++  }
++  h1 { font-size: 1.75rem; margin-bottom: 0.25rem; }
++  h2 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.5rem; }
++  h3 { font-size: 1.05rem; margin-top: 1.25rem; margin-bottom: 0.35rem; }
++  p, ul { margin-bottom: 1rem; }
++  ul { padding-left: 1.5rem; }
++  li { margin-bottom: 0.35rem; }
++  .updated { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
++  a { color: var(--accent); }
++  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
++</style>
++</head>
++<body>
++
++<h1>Privacy Policy</h1>
++<p class="updated">Last updated: October 15, 2026</p>
++
++<p>TapSync ("we", "our", or "the app") is a timing and rhythm game for Android developed by Ashwin S Ashok. TapSync is intended for adults aged 18 and older. This privacy policy explains what information the app collects, how it is used, and your choices.</p>
++
++<p>The adult-only access and advertising controls described below apply to the updated TapSync release that includes the age-selection screen. Older installed versions may not include these controls. Please update the app when the release becomes available.</p>
++
++<h2>Information We Collect</h2>
++
++<h3>Game Data</h3>
++<p>TapSync stores game progress, scores, statistics, purchase-entitlement status, and preferences on your device. Android may back up these preferences or transfer them to another device according to your device settings. Your selected age group is excluded from these backups and transfers.</p>
++<p>We do not operate our own game-data server. Scores and achievements may be sent to Google Play Games when you are signed in, and the services described below process their own data.</p>
++
++<h3>Advertising</h3>
++<p>TapSync asks for an age group before requesting ads. The choice is stored on this device and excluded from app backup; no date of birth is requested. You can update it in Settings &gt; Age preferences.</p>
++<p>Users selecting under 18 or “Prefer not to say” cannot access gameplay in the updated release, and the app does not request ads for them. The updated release does not display banner ads. Users selecting 18 or older may receive G-rated Google AdMob rewarded and interstitial ads after the applicable privacy checks. AdMob may process device information, IP address and ad interactions to deliver and measure ads. The app does not request the Google Advertising ID permission. Where required, privacy choices are collected through Google's consent form and can be revisited in Settings &gt; Ad privacy choices.</p>
++
++<h3>Purchase Information</h3>
++<p>TapSync offers optional in-app purchases (tip jar and, for eligible adult users where offered, remove ads) through Google Play Billing. All payment processing is handled entirely by Google Play. We do not collect, store, or have access to your payment details such as credit card numbers or billing addresses.</p>
++
++<h3>Google Play Games Services</h3>
++<p>If you sign in to Google Play Games, the app may access:</p>
++<ul>
++  <li>Your Play Games player ID and display name</li>
++  <li>Leaderboard scores and achievements</li>
++</ul>
++<p>This data is managed by Google Play Games Services in accordance with <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>. Core gameplay does not require Play Games sign-in. In the updated release, Play Games is initialized only when a user who selected 18 or older chooses a Play Games feature. The app blocks its Play Games calls for under-18 and unknown-age users. You can manage your Play Games account and records through Google Play Games settings.</p>
++
++<h3>Analytics and Crash Reporting</h3>
++<p>The updated release does not include Firebase Analytics or Firebase Crashlytics. It does not send app usage analytics or crash reports through those services. Older releases included these services; data previously processed by Google remains subject to <a href="https://firebase.google.com/support/privacy">Firebase's privacy and retention practices</a>.</p>
++
++<h2>Information We Do Not Collect</h2>
++<ul>
++  <li>The app does not ask you to enter your name, email address, or phone number to play. Play Games may provide a display name, and contacting support voluntarily shares your email address and message with us.</li>
++  <li>Precise location data (GPS)</li>
++  <li>Contacts, photos, or files</li>
++  <li>Browsing history</li>
++  <li>Microphone or camera data</li>
++</ul>
++
++<h2>Third-Party Services</h2>
++<p>The app integrates the following third-party services, each with their own privacy policies:</p>
++<ul>
++  <li><strong>Google AdMob</strong> &mdash; for age-appropriate advertising (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
++  <li><strong>Google Play Billing</strong> &mdash; for processing in-app purchases (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
++  <li><strong>Google Play Games Services</strong> &mdash; for leaderboards and achievements (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>)</li>
++</ul>
++
++<h2>Data Storage, Retention, and Deletion</h2>
++<p>Local progress and preferences remain until you clear the app's storage or uninstall it. Android backups may restore eligible data after reinstalling. Clearing local storage or uninstalling does not automatically delete backup copies, Google Play Games records, purchases, or data already processed by other services.</p>
++<p>Google processes and retains service data according to the linked policies and the applicable service settings. You can manage Android backups and Google Play Games data through the corresponding Google or device settings. Contact us at the address below for privacy questions or requests; we may need information to identify the relevant data and may direct you to the service that controls it.</p>
++<p>We do not operate our own game-data servers. Google services may process data outside your country under their published privacy and security practices.</p>
++
++<h2>Children's Privacy</h2>
++<p>TapSync is intended for adults aged 18 and older and is not directed at children. The updated release uses a self-declared age group to restrict gameplay and advertising access to users selecting 18 or older. The age screen is not identity or age verification. An age group is stored locally; it is not sent as an analytics event. The updated release does not include Firebase Analytics or Crashlytics and blocks app-initiated Play Games features for users under 18 or whose age is unknown. Parents or guardians can contact us with questions about a child's use of the app or associated data.</p>
++
++<h2>Your Choices</h2>
++<ul>
++  <li><strong>Opt out of personalized ads</strong>: Use Settings &gt; Ad privacy choices when available</li>
++  <li><strong>Remove ads</strong>: Eligible adult users can purchase the "Remove Ads" option when ads are enabled</li>
++  <li><strong>Play Games sign-in</strong>: Signing in is optional; you can disconnect in Settings &gt; Google &gt; Play Games</li>
++  <li><strong>Age preferences</strong>: Update your age-group choice in Settings &gt; Age preferences. No date of birth is requested.</li>
++  <li><strong>Uninstall</strong>: Clear app storage or uninstall to remove local data. Backups and third-party records are managed separately as described above</li>
++</ul>
++
++<h2>Changes to This Policy</h2>
++<p>We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date. Where required, we will provide additional notice or request consent for material changes.</p>
++
++<h2>Contact</h2>
++<p>If you have questions about this privacy policy, please contact us at:</p>
++<p><a href="mailto:andrix.android@gmail.com">andrix.android@gmail.com</a></p>
++
++</body>
++</html>
+diff --git a/tools/check-live-policies.py b/tools/check-live-policies.py
+new file mode 100644
+index 0000000..07b46df
+--- /dev/null
++++ b/tools/check-live-policies.py
+@@ -0,0 +1,13 @@
++#!/usr/bin/env python3
++"""Run after GitHub Pages deployment; does not modify either repository."""
++import json,urllib.request
++from pathlib import Path
++root=Path(__file__).resolve().parents[1]
++for policy in json.loads((root/'policies.json').read_text()):
++    with urllib.request.urlopen(policy['url'],timeout=20) as response:
++        body=response.read().decode('utf-8')
++        assert response.status==200,policy['url']
++        assert 'privacy' in body.lower(),policy['url']
++        assert body==(root/policy['path']).read_text(),('Deployed content differs',policy['url'])
++        print('LIVE',policy['url'])
++print('All six public pages match the migrated policies.')
+diff --git a/tools/validate-policies.py b/tools/validate-policies.py
+new file mode 100644
+index 0000000..5a1a59b
+--- /dev/null
++++ b/tools/validate-policies.py
+@@ -0,0 +1,31 @@
++#!/usr/bin/env python3
++from pathlib import Path
++from html.parser import HTMLParser
++import hashlib,json,sys
++ROOT=Path(__file__).resolve().parents[1]
++class Page(HTMLParser):
++    def __init__(self):
++        super().__init__();self.links=[];self.title=False;self.h1=False
++    def handle_starttag(self,tag,attrs):
++        if tag=='a': self.links.append(dict(attrs).get('href',''))
++        if tag=='title': self.title=True
++        if tag=='h1': self.h1=True
++policies=json.loads((ROOT/'policies.json').read_text())
++assert len(policies)==6 and len({p['url'] for p in policies})==6
++pages={}
++for name in ['index.html','privacy.html']+[p['path'] for p in policies]:
++    page=Page();page.feed((ROOT/name).read_text());pages[name]=page
++    assert page.title and page.h1,name
++    for href in page.links:
++        if not href or href.startswith(('https:','http:','mailto:','#')): continue
++        target=href.split('#')[0]
++        if target and target!='/': assert (ROOT/target.lstrip('/')).exists(),(name,href)
++for p in policies:
++    assert p['path'] in pages['index.html'].links,p['path']
++    assert p['path'] in pages['privacy.html'].links,p['path']
++    assert p['url']=='https://andrix-software.github.io/'+p['path']
++    if '--verify-imports' in sys.argv:
++        assert hashlib.sha256((ROOT/p['path']).read_bytes()).hexdigest()==p['imported_sha256'],p['path']
++    print('OK',p['app'],p['url'])
++assert (ROOT/'app-ads.txt').read_text().strip()=='google.com, pub-7116396142264702, DIRECT, f08c47fec0942fa0'
++print('Six policy imports, homepage/catalog links and app-ads.txt validated.')
+-- 
+2.52.0
+
